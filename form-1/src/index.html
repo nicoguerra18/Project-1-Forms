@@ -1,0 +1,153 @@
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+<script type="text/javascript" src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+<script src="https://kit.fontawesome.com/0e89051a46.js" crossorigin="anonymous"></script>
+
+<form>
+
+  <!--Imports-->
+  <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+
+  <div class="well">Fill out the form and click the submit button when complete...</div>
+  <div class="row">
+    <!--Left Column-->
+    <div class='col-xs-6'>
+      <!--USER-->
+      <div class="panel panel-primary">
+        <div class="panel-heading"><strong>User:</strong></div>
+        <div class="panel-body">
+          <!--first name-->
+          <label class="col-xs-4">Username:</label>
+          <div class="col-xs-8" id="validate-username">
+            <input type="text" class="form-control" placeholder="Type username..." id='username'>
+
+          </div>
+          <!--first name-->
+          <label class="col-xs-4">First Name:</label>
+          <div class="col-xs-8" id="validate-first">
+            <input type="text" class="form-control" placeholder="Type first name..." id='first'>
+          </div>
+          <!--last name-->
+          <label class="col-xs-4">Last Name:</label>
+          <div class="col-xs-8" id="validate-last">
+            <input type="text" class="form-control" placeholder="Type last name..." id='last'>
+          </div>
+        </div>
+      </div>
+
+      <!--CONTACT-->
+      <div class="panel panel-primary">
+        <div class="panel-heading"><strong>Contact:</strong></div>
+        <div class="panel-body">
+          <!--Phone number-->
+          <div class="input-group" id="validate-phone">
+            <span class="input-group-addon"><i class="fa-solid fa-phone"></i></span>
+            <input id="phone" type="tel" class="form-control" placeholder="Type phone#...">
+          </div>
+          <!--Fax-->
+          <div class="input-group" id="validate-fax">
+            <span class="input-group-addon"><i class="fa-solid fa-fax"></i></span>
+            <input id="fax" type="number" class="form-control" placeholder="Type fax#...">
+          </div>
+          <!--Email-->
+          <div class="input-group" id="validate-email">
+            <span class="input-group-addon"><i class="fa-solid fa-envelope"></i></span>
+            <input id="email" type="email" class="form-control" placeholder="Type email#...">
+          </div>
+        </div>
+      </div>
+
+      <!--Scheduale-->
+      <div class="panel panel-primary">
+        <div class="panel-heading"><strong>Scheduale:</strong></div>
+        <div class="panel-body">
+          <!--Adults-->
+          <div class="col-xs-12" id="validate-adults">
+            <label for="adults">Adults:</label>
+            <select class="form-control" id="numOfAdults" oninput="updateCost()">
+              <option selected>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+            </select>
+
+          </div>
+          <!--Check-IN & check-OUT-->
+          <div class="col-xs-6" id="validate-checkin">
+            <label for="checkin">Check-In:</label>
+            <input id="checkinInput" type="date" class="form-control" placeholder="mm/dd/yyyy" oninput="updateDays(); updateCost()">
+          </div>
+          <div class="col-xs-6" id="validate-checkout-">
+            <label for="checkout">Check-Out:</label>
+            <input id="checkoutInput" type="date" class="form-control" placeholder="mm/dd/yyyy" oninput="updateDays(); updateCost()">
+          </div>
+
+          <!--Days and Cost-->
+          <div class="col-xs-6" id="validate-days">
+            <label for="checkin">Days:</label>
+            <input class="form-control" id="disabledInput1" type="text" placeholder="Displays days..." disabled>
+
+          </div>
+          <div class="col-xs-6" id="validate-cost">
+            <label for="checkout">Cost($):</label>
+            <input class="form-control" id="disabledInput2" type="text" placeholder="Displays cost..." disabled>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!--Right Column-->
+    <div class='col-xs-6'>
+      <!--Other-->
+      <div class="panel panel-primary">
+        <div class="panel-heading"><strong>Other:</strong></div>
+        <div class="panel-body">
+
+          <!--Message-->
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <div id="validate-message">
+              <textarea class="form-control" placeholder="Type message here..." id="message" style='height: 425px;'></textarea>
+            </div>
+            <!--Range-->
+            <label for="range1" class="form-label">Range:</label>
+            <input type="range" class="form-range" id="range1" min="0" max="10" step="1">
+          </div>
+
+          <!--Priority-->
+          <div class="form-group">
+            <label>Priority:</label>
+            <div>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" checked>Low
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio">Med
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio">High
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Bottom Row: Reset and Submit-->
+  <hr style="margin-top 0px;">
+
+  <div class="row">
+    <button class="btn btn-success pull-right" onclick="submitForm()" value="Submit" style="margin-right: 20px; width: 200px;" type="button"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+    <button class="btn btn-primary pull-right" onclick="resetForm()" type="reset" value="Reset" style="margin-right: 20px; width: 200px;"> <i class="fa-solid fa-eraser"></i> Reset</button>
+  </div>
+
+</form>
